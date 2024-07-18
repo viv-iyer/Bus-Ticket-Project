@@ -6,6 +6,25 @@
     <!-- <title>Document</title> -->
 </head>
 <body>
+
+
+    <label for="username">Username:</label><input type="text" id="userName" name="userName">
+    <br><br>
+    <label for="username">Phone Number:</label><input type="number" id="phoneNumber" name="phoneNumber">
+    <br><br>
+    <label for="username">Email Address:</label><input type="email" id="emailId" name="emailId">
+    <br><br>
+
+    {% for var in busInfo %}
+    <table>
+        <td>{{var.busNumber}}</td>
+        <td>{{var.busSource}}</td>
+        <td>{{var.busDestination}}</td>
+        <td>{{var.arrivalTime}}</td>
+        <td>{{var.remainingSeats}}</td>
+        <td>{{var.fare}}</td>
+    </table>
+    {% endfor %}
     
 </body>
 </html>

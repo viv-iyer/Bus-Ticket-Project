@@ -13,7 +13,9 @@ migrate = Migrate(app, db)
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    busInfo = BusInfo.query.all()
+    print(busInfo)
+    return render_template("index.html", busInfo = busInfo)
     
 
 if __name__ == "__main__":
