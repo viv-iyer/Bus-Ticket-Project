@@ -6,9 +6,9 @@ db = SQLAlchemy()
 class BusInfo(db.Model):
     __tablename__ = 'BusInfo'
     busNumber = db.Column(db.Integer, primary_key=True)
-    busSource = db.Column(db.String, unique=True, nullable=False)
-    busDestination= db.Column(db.String, unique=True, nullable=False)
-    arrivalTime = db.Column(db.DateTime, default = datetime.now(), unique=True, nullable=False)
+    busSource = db.Column(db.String, nullable=False)
+    busDestination= db.Column(db.String, nullable=False)
+    arrivalTime = db.Column(db.DateTime, default = datetime.now(), nullable=False)
     remainingSeats = db.Column(db.Integer, nullable=False, default = 40)
     fare = db.Column(db.Integer, nullable=False, default = 200)
 
@@ -19,9 +19,12 @@ class BusInfo(db.Model):
 class TicketInfo(db.Model):
     __tablename__ = 'TicketInfo'
     ticketId = db.Column(db.Integer, primary_key=True)
-    busNumber = db.Column(db.ForeignKey('BusInfo.busNumber'), unique=True, nullable=False)
+    busNumber = db.Column(db.ForeignKey('BusInfo.busNumber'), nullable=False)
     phoneNumber = db.Column(db.ForeignKey('UserInfo.phoneNumber'), unique=True, nullable=False)
-    ticketQuantity = db.Column(db.Integer, unique=True, nullable=False)
+    ticketQuantity = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return f"{self.ticketId}, {self.busNumber}, {self.phoneNumber}, {self.ticketQuantity}"
 
     
 class UserInfo(db.Model):
@@ -29,19 +32,7 @@ class UserInfo(db.Model):
     userName = db.Column(db.Integer, nullable=False)
     phoneNumber = db.Column(db.Integer, primary_key=True)
     emailId = db.Column(db.String, unique=True, nullable=False)
-    ticketId = db.Column(db.ForeignKey('TicketInfo.ticketId'), unique=True, nullable=False)
-     
+    ticketId = db.Column(db.ForeignKey('TicketInfo.ticketId'), nullable=False)
 
-# def __repr__(self):
-#     return f"{self.userName}, {self.ticketId}, {self.busNumber}, {self.busSource}, {self.busDestination}, {self.arrivalTime}"
-
-
-
-
-
-
-
-
- 
-
-    
+    def __repr__(self):
+        return f"{self.userName}, {self.phoneNumber}, {self.emailId}, {self.ticketId}"    

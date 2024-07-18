@@ -12,13 +12,13 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 @app.route("/")
-def hello_world():
+def home():
     return render_template("index.html")
     
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-    # app.run(debug=True)
+    # with app.app_context():
+    #     db.create_all()
+    app.run(debug=True)
 
 
