@@ -24,13 +24,14 @@ def add_ticket(ticket):
     ticket = TicketInfo(**ticket)
     db.session.add(ticket)
     db.session.commit()
-    return list_all_ticket()
+    print("Newly created Ticket ID: ",ticket.ticketId)
+    return ticket.ticketId
 
 def add_user(user):
     user = UserInfo(**user)
     db.session.add(user)
     db.session.commit()
-    return list_all_users()
+    return
 
 def get_by_ticket_no(ticketId):
     return db.session.get(TicketInfo, ticketId)
@@ -40,27 +41,29 @@ def delete_ticket(ticketId):
     db.session.delete(ticket)
     db.session.commit()
 
-if __name__ == "__main__":
-    with app.app_context():
-        # initialise_db()
-        users = [{"userName": "JJ", "phoneNumber": "9865253278", "emailId": "abc@gmail.com", "ticketId":"33"}]
-        tickets = [{"ticketId":"45", "busNumber":"4", "phoneNumber": "9865253279", "ticketQuantity":"1"}]
-        buses = [{"busNumber":"4", "busSource":"Pune","busDestination":"Mumbai"}]
+# if __name__ == "__main__":
+#     with app.app_context():
+#         # initialise_db()
+#         users = [{"userName": "JJ", "phoneNumber": "9865253278", "emailId": "abc@gmail.com", "ticketId":"33"}]
+#         tickets = [{"busNumber":"4", "phoneNumber": "9865253270", "ticketQuantity":"1"}]
+#         buses = [{"busNumber":"5", "busSource":"Pune","busDestination":"Mumbai", "remainingSeats":"0"}]
 
-        # for user in users:
-        #     print(add_user(user))
+#         # for user in users:
+#         #     print(add_user(user))
 
-        # for ticket in tickets:
-        #     print(add_ticket(ticket))
+#         for ticket in tickets:
+#             print(add_ticket(ticket))
 
-        # for bus in buses:
-        #     print(add_bus(bus))
+#         # for bus in buses:
+#         #     print(add_bus(bus))
 
-        delete_ticket(33)
+#         # delete_ticket(33)
 
-        # print(list_all_buses())
-        print(list_all_ticket())
-        # print(list_all_users())
+        
+
+#         # print(list_all_buses())
+#         print(list_all_ticket())
+#         # print(list_all_users())
 
 
 

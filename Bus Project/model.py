@@ -18,7 +18,7 @@ class BusInfo(db.Model):
 
 class TicketInfo(db.Model):
     __tablename__ = 'TicketInfo'
-    ticketId = db.Column(db.Integer, primary_key=True)
+    ticketId = db.Column(db.Integer, primary_key=True, autoincrement=True)
     busNumber = db.Column(db.ForeignKey('BusInfo.busNumber'), nullable=False)
     phoneNumber = db.Column(db.ForeignKey('UserInfo.phoneNumber'), unique=True, nullable=False)
     ticketQuantity = db.Column(db.Integer, nullable=False)
